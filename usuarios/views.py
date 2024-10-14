@@ -1,17 +1,26 @@
-from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
+# usuarios/views.py
 
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.contrib import messages
 
 def login_view(request):
+    return render(request, 'usuarios/login.html')  # Cargar la plantilla de inicio de sesión
+
+def register_view(request):
     if request.method == 'POST':
+        username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
-        user = authenticate(request, username=email, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('home')  # Redirigir después de iniciar sesión (cambia 'home' según tu ruta)
-        else:
-            # Mostrar mensaje de error si las credenciales son incorrectas
-            return render(request, 'usuarios/login.html', {'error': 'Correo o contraseña incorrectos'})
-    return render(request, 'usuarios/login.html')
+
+        # Crear un nuevo usuario
+        user = User.objects.create_user(username=username, email=email, password=password)
+        user.save()
+
+        messages.success(request, 'Cuenta creada con éxito.')
+        return redirect('login')  # Redirige al inicio de sesión después de registrarse
+
+    return render(request, 'usuarios/register.html')  # Cargar la plantilla de registro
+
+
 
