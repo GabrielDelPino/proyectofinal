@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CalendarioPyme{% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<div class="container-fluid vh-100">
+    <div class="row h-100">
+        <div class="col-md-6 bg-left d-flex flex-column justify-content-center align-items-center">
+            <h1 class="title">CalendarioPyme</h1>
+            <p class="subtitle">CalendarioPyme te ayuda a organizarte</p>
+        </div>
+        <div class="col-md-6 d-flex flex-column justify-content-center align-items-center bg-right">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
