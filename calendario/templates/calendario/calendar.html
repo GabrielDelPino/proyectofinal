@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalendarioPyme</title>
+    <link rel="stylesheet" href="{% static 'css/calendar.css' %}">
+    <!-- Font Awesome para los iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-bars"></i>
+                <span>CALENDARIO</span>
+            </div>
+            
+            <div class="sidebar-menu">
+                <a href="#" class="menu-item">
+                    <i class="fas fa-plus"></i>
+                    <span>NUEVO EVENTO</span>
+                </a>
+                
+                <a href="#" class="menu-item">
+                    <i class="fas fa-bell"></i>
+                    <span>NOTIFICACIONES</span>
+                </a>
+                
+                <a href="#" class="menu-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>AGENDAR CITA</span>
+                </a>
+                
+                <a href="#" class="menu-item">
+                    <i class="fas fa-file-alt"></i>
+                    <span>AÑADIR NOTAS</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Calendar Content -->
+        <div class="calendar-content">
+            <!-- Navegación de meses -->
+            <div class="calendar-navigation">
+                <a href="?month={{ previous_month }}&year={{ previous_year }}" class="nav-button">
+                    <i class="fas fa-chevron-left"></i> Anterior
+                </a>
+                <h1 class="month-title">{{ month_name }} {{ year }}</h1>
+                <a href="?month={{ next_month }}&year={{ next_year }}" class="nav-button">
+                    Siguiente <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+
+            <!-- Calendario -->
+            <div class="calendar-grid">
+                <!-- Días de la semana -->
+                <div class="weekday">Lunes</div>
+                <div class="weekday">Martes</div>
+                <div class="weekday">Miércoles</div>
+                <div class="weekday">Jueves</div>
+                <div class="weekday">Viernes</div>
+                <div class="weekday saturday">Sábado</div>
+                <div class="weekday sunday">Domingo</div>
+
+                <!-- Días del mes -->
+                {% for week in calendar_weeks %}
+                    {% for day in week %}
+                        {% if day != 0 %}
+                            <div class="day-cell">
+                                <span class="day-number {% if forloop.counter == 6 %}saturday{% elif forloop.counter == 7 %}sunday{% endif %}">{{ day }}</span>
+                            </div>
+                        {% else %}
+                            <div class="day-cell"></div>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
