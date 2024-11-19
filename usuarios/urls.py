@@ -1,12 +1,19 @@
 # usuarios/urls.py
-
 from django.urls import path
-from .views import login_view, register_view  # Importa las vistas
+from . import views
+
+app_name = 'usuarios'  # Namespace para esta aplicación
 
 urlpatterns = [
-    path('login/', login_view, name='login'),  # Ruta para iniciar sesión
-    path('register/', register_view, name='register'),  # Ruta para registrarse
+    path('login/', views.login_view, name='login'),  # Ruta para el login
+    path('register/', views.register_view, name='register'),  # Ruta para el registro
 ]
+
+
+
+
+
+
 
 
 
