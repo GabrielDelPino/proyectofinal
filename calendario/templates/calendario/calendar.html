@@ -14,8 +14,8 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <div class="sidebar-header">
-                <i class="fas fa-bars"></i>
-                <span>CALENDARIO</span>
+                <img src="{{ empresa_logo.url }}" alt="{{ empresa_nombre }} Logo" class="sidebar-logo">
+                <h2 class="empresa-nombre">{{ empresa_nombre }}</h2>
             </div>
             
             <div class="sidebar-menu">
@@ -43,18 +43,18 @@
 
         <!-- Calendar Content -->
         <div class="calendar-content">
-            <!-- Navegación de meses -->
+            <!-- Navegación del calendario -->
             <div class="calendar-navigation">
-                <a href="?month={{ previous_month }}&year={{ previous_year }}" class="nav-button">
-                    <i class="fas fa-chevron-left"></i> Anterior
+                <a href="?month={{ current_month|add:"-1" }}&year={{ current_year }}" class="prev-month">
+                    &laquo; Mes Anterior
                 </a>
-                <h1 class="month-title">{{ month_name }} {{ year }}</h1>
-                <a href="?month={{ next_month }}&year={{ next_year }}" class="nav-button">
-                    Siguiente <i class="fas fa-chevron-right"></i>
+                <a href="?month={{ current_month|add:"1" }}&year={{ current_year }}" class="next-month">
+                    Mes Siguiente &raquo;
                 </a>
             </div>
 
-            <!-- Calendario -->
+            <h1 class="month-title">{{ month_name }} {{ current_year }}</h1>
+            
             <div class="calendar-grid">
                 <!-- Días de la semana -->
                 <div class="weekday">Lunes</div>
@@ -82,6 +82,9 @@
     </div>
 </body>
 </html>
+
+
+
 
 
 

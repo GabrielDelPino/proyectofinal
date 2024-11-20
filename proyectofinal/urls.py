@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('usuarios/', include('usuarios.urls')),  # Incluye las URLs de la app 'usuarios'
     path('login/', lambda request: redirect('usuarios:login')),  # Redirige '/login' al login de 'usuarios'
-    path('', lambda request: redirect('login')),  # Redirige la raíz al login
+    path('', lambda request: redirect('usuarios:login')),  # Redirige la raíz al login
     path('perfil/', include('perfil.urls')),  # Incluye las URLs de la app 'perfil'
     path('calendario/', include('calendario.urls')),  # Incluye las URLs de la app 'calendario'
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # Servir archivos de medios
