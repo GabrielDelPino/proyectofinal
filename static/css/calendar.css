@@ -69,6 +69,11 @@ body {
     background-color: #f9fafb;
 }
 
+.menu-item.logout {
+    margin-top: 30rem; /* Ajusta el espacio hacia abajo */
+}
+
+
 /* Calendar Content Styles */
 .calendar-content {
     flex: 1;

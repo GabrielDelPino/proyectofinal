@@ -14,6 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+# proyectofinal/urls.py
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import redirect
@@ -22,12 +23,12 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('usuarios/', include('usuarios.urls')),  # Incluye las URLs de la app 'usuarios'
-    path('login/', lambda request: redirect('usuarios:login')),  # Redirige '/login' al login de 'usuarios'
+    path('usuarios/', include('usuarios.urls')),
     path('', lambda request: redirect('usuarios:login')),  # Redirige la raíz al login
-    path('perfil/', include('perfil.urls')),  # Incluye las URLs de la app 'perfil'
-    path('calendario/', include('calendario.urls')),  # Incluye las URLs de la app 'calendario'
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # Servir archivos de medios
+    path('perfil/', include('perfil.urls')),
+    path('calendario/', include('calendario.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 
 

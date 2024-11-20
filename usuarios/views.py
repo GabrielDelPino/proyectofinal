@@ -3,7 +3,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 def login_view(request):
     if request.method == 'POST':
@@ -41,3 +41,10 @@ def register_view(request):
         return redirect('usuarios:login')  # Redirige al inicio de sesión después de registrarse
 
     return render(request, 'usuarios/register.html')
+
+def logout_view(request):
+    """
+    Cierra la sesión del usuario y redirige al inicio de sesión.
+    """
+    logout(request)  # Cierra la sesión
+    return redirect('usuarios:login')  # Redirige al login
