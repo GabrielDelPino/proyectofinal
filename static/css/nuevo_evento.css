@@ -169,3 +169,90 @@ body {
     }
 }
 
+/* Estilo para el contenido principal */
+.calendar-content {
+    flex: 1;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+}
+
+/* Título principal */
+.calendar-content h1 {
+    color: #b45309;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Lista de eventos */
+.calendar-content .list-group {
+    margin: 0 auto;
+    max-width: 800px;
+    list-style: none;
+    padding: 0;
+}
+
+/* Estilo para cada elemento de la lista */
+.calendar-content .list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Texto de los eventos */
+.calendar-content .list-group-item span {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Botón para añadir notas */
+.calendar-content .list-group-item a {
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.calendar-content .list-group-item a:hover {
+    background-color: #0056b3;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .calendar-content .list-group-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .calendar-content .list-group-item a {
+        margin-top: 0.5rem;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Botones */
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+

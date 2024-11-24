@@ -1,5 +1,5 @@
 from django import forms
-from .models import Evento, Categoria
+from .models import Evento, Categoria, Nota
 
 class EventoForm(forms.ModelForm):
     nueva_categoria = forms.CharField(
@@ -24,5 +24,14 @@ class EventoForm(forms.ModelForm):
             categoria, created = Categoria.objects.get_or_create(nombre=nueva_categoria)
             self.instance.categoria = categoria
         return super().save(commit)
+
+class NotaForm(forms.ModelForm):
+    class Meta:
+        model = Nota
+        fields = ['texto']
+        widgets = {
+            'texto': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Escribe tu nota aquí'}),
+        }
+
 
 

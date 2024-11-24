@@ -1,0 +1,42 @@
+{% extends 'nuevo_evento/nuevo_evento_base.html' %}
+
+{% block title %}Detalle del Evento{% endblock %}
+
+{% block content %}
+<div class="calendar-content">
+    <h1 class="text-primary">Evento: {{ evento.titulo }}</h1>
+    <p><strong>Fecha:</strong> {{ evento.fecha|date:"d/m/Y" }}</p>
+    <p><strong>Categoría:</strong> {{ evento.categoria.nombre }}</p>
+
+    <h2 class="mt-4">Notas</h2>
+    <ul class="list-group">
+        {% for nota in notas %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>{{ nota.texto }}</span>
+                <div>
+                    <small class="text-muted">{{ nota.fecha_creacion|date:"d/m/Y H:i" }}</small>
+                    <a href="{% url 'eliminar_nota' nota.id %}" class="btn btn-danger btn-sm"
+                       onclick="return confirm('¿Estás seguro de eliminar esta nota?');">
+                        Eliminar
+                    </a>
+                </div>
+            </li>
+        {% empty %}
+            <li class="list-group-item">No hay notas aún.</li>
+        {% endfor %}
+    </ul>
+
+    <form method="POST" class="mt-4">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.texto.label_tag }}
+            {{ form.texto }}
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Guardar Nota</button>
+    </form>
+</div>
+{% endblock %}
+
+
+
+
