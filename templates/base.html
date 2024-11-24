@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}CalendarioPyme{% endblock %}</title>
+    
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
@@ -22,19 +28,33 @@
     </div>
 </div>
 
+<!-- Sidebar Header -->
 {% if empresa_logo %}
-    <div class="sidebar-header">
-        <img src="{{ empresa_logo.url }}" alt="{{ empresa_nombre }} Logo" class="sidebar-logo">
-        <span class="empresa-name">{{ empresa_nombre }}</span>
+    <div class="sidebar-header text-center">
+        <img src="{{ empresa_logo.url }}" alt="{{ empresa_nombre }} Logo" class="sidebar-logo mb-2">
+        <span class="empresa-name font-weight-bold">{{ empresa_nombre }}</span>
     </div>
 {% else %}
-    <div class="sidebar-header">
-        <span class="empresa-name">{{ empresa_nombre }}</span>
+    <div class="sidebar-header text-center">
+        <span class="empresa-name font-weight-bold">{{ empresa_nombre }}</span>
     </div>
 {% endif %}
 
+<!-- Scripts -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    setTimeout(() => {
+        const alerts = document.querySelectorAll('.alert');
+        alerts.forEach(alert => {
+            alert.style.opacity = '0';
+            alert.style.transform = 'translateY(-20px)';
+            setTimeout(() => alert.remove(), 500); // Elimina del DOM después de la animación
+        });
+    }, 5000); // Desaparece después de 5 segundos
+</script>
+
 </body>
 </html>
+
 
