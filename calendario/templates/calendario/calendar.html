@@ -21,7 +21,7 @@
                 <a href="{% url 'nuevo_evento' %}" class="menu-item">
                     <i class="fas fa-plus"></i>
                     <span>NUEVO EVENTO</span>
-                </a>                                
+                </a>
                 <a href="#" class="menu-item">
                     <i class="fas fa-bell"></i>
                     <span>NOTIFICACIONES</span>
@@ -38,7 +38,7 @@
                 <a href="{% url 'usuarios:logout' %}" class="menu-item logout">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>CERRAR SESIÓN</span>
-                </a>                
+                </a>
             </div>
         </div>
 
@@ -63,19 +63,20 @@
                 <div class="weekday sunday">Domingo</div>
                 {% for week in calendar_weeks %}
                     {% for day in week %}
-                        {% if day != 0 %}
-                            <div class="day-cell">
-                                <span class="day-number {% if forloop.counter == 6 %}saturday{% elif forloop.counter == 7 %}sunday{% endif %}">{{ day }}</span>
-                                <!-- Mostrar los eventos asignados a este día -->
-                                {% for evento in eventos %}
-                                    {% if evento.fecha|date:"j" == day|stringformat:"d" %}
+                        <div class="day-cell">
+                            <span class="day-number">{{ day }}</span>
+                            {% for evento in eventos %}
+                                {% if evento.fecha|date:"j" == day|stringformat:"d" %}
+                                    <div class="event-container">
                                         <p class="event">{{ evento.titulo }} - {{ evento.hora }}</p>
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                            <div class="day-cell"></div>
-                        {% endif %}
+                                        <div class="event-tooltip">
+                                            <p><strong>Descripción:</strong> {{ evento.descripcion }}</p>
+                                            <p><strong>Categoría:</strong> {{ evento.categoria.nombre }}</p>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
                     {% endfor %}
                 {% endfor %}
             </div>
@@ -83,6 +84,8 @@
     </div>
 </body>
 </html>
+
+
 
 
 

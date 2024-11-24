@@ -169,5 +169,31 @@ body {
     font-size: 0.85em;
 }
 
+.event-container {
+    position: relative;
+    display: inline-block;
+}
+
+.event-tooltip {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 0.85em;
+    white-space: nowrap;
+    z-index: 1000;
+    margin-top: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.event-container:hover .event-tooltip {
+    display: block;
+}
+
 
 

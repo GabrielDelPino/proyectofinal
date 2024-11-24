@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Categoria(models.Model):
     nombre = models.CharField(max_length=50, unique=True)
@@ -7,6 +8,7 @@ class Categoria(models.Model):
         return self.nombre
 
 class Evento(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name="eventos")  # Relación con el usuario
     titulo = models.CharField(max_length=100)
     fecha = models.DateField(blank=True, null=True)  # Permitir eventos sin fecha inicial
     hora = models.TimeField(blank=True, null=True)  # Permitir eventos sin hora inicial
@@ -17,6 +19,7 @@ class Evento(models.Model):
 
     def __str__(self):
         return self.titulo
+
 
 
 

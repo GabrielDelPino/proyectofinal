@@ -10,11 +10,9 @@ class EventoForm(forms.ModelForm):
 
     class Meta:
         model = Evento
-        fields = ['titulo', 'fecha', 'hora', 'categoria', 'descripcion', 'recordatorio']
+        fields = ['titulo', 'categoria', 'descripcion', 'recordatorio']
         widgets = {
             'titulo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del Evento'}),
-            'fecha': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-            'hora': forms.TimeInput(attrs={'class': 'form-control', 'type': 'time'}),
             'categoria': forms.Select(attrs={'class': 'form-control'}),
             'descripcion': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Descripción'}),
             'recordatorio': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
