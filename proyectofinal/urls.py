@@ -27,7 +27,9 @@ urlpatterns = [
     path('', lambda request: redirect('usuarios:login')),  # Redirige la raíz al login
     path('perfil/', include('perfil.urls')),
     path('calendario/', include('calendario.urls')),
+    path('nuevo_evento/', include('nuevo_evento.urls')),  # Incluir las rutas de nuevo_evento
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 
 

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'usuarios',
     'perfil',
     'calendario',
+    'nuevo_evento',
 ]
 
 MIDDLEWARE = [

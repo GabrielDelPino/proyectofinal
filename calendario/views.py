@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from calendar import monthcalendar
 from datetime import datetime
+from nuevo_evento.models import Evento
 from perfil.models import Perfil
 
 def get_calendar_data(user, year, month):
@@ -32,6 +33,7 @@ def get_calendar_data(user, year, month):
         'empresa_logo': perfil.logo,
         'current_month': month,
         'current_year': year,
+        'eventos': Evento.objects.filter(asignado=True, fecha__year=year, fecha__month=month),  # Solo eventos asignados
     }
 
 def calendar_view(request):
@@ -43,6 +45,9 @@ def calendar_view(request):
     calendar_data = get_calendar_data(request.user, year, month)
     
     return render(request, 'calendario/calendar.html', calendar_data)
+
+
+
 
 
 

@@ -18,10 +18,10 @@
             </div>
             
             <div class="sidebar-menu">
-                <a href="#" class="menu-item">
+                <a href="{% url 'nuevo_evento' %}" class="menu-item">
                     <i class="fas fa-plus"></i>
                     <span>NUEVO EVENTO</span>
-                </a>
+                </a>                                
                 <a href="#" class="menu-item">
                     <i class="fas fa-bell"></i>
                     <span>NOTIFICACIONES</span>
@@ -66,6 +66,12 @@
                         {% if day != 0 %}
                             <div class="day-cell">
                                 <span class="day-number {% if forloop.counter == 6 %}saturday{% elif forloop.counter == 7 %}sunday{% endif %}">{{ day }}</span>
+                                <!-- Mostrar los eventos asignados a este día -->
+                                {% for evento in eventos %}
+                                    {% if evento.fecha|date:"j" == day|stringformat:"d" %}
+                                        <p class="event">{{ evento.titulo }} - {{ evento.hora }}</p>
+                                    {% endif %}
+                                {% endfor %}
                             </div>
                         {% else %}
                             <div class="day-cell"></div>
@@ -77,6 +83,8 @@
     </div>
 </body>
 </html>
+
+
 
 
 
