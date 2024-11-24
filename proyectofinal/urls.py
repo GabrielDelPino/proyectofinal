@@ -24,12 +24,16 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('usuarios/', include('usuarios.urls')),
-    path('', lambda request: redirect('usuarios:login')),  # Redirige la raíz al login
+    path('', lambda request: redirect('usuarios:login')),
     path('perfil/', include('perfil.urls')),
     path('calendario/', include('calendario.urls')),
-    path('nuevo_evento/', include('nuevo_evento.urls')),  # Incluir las rutas de nuevo_evento
+    path('nuevo_evento/', include('nuevo_evento.urls')),
     path('agendar_cita/', include('agendar_cita.urls')),
+    path('notificaciones/', include('notificaciones.urls')),  # Correctamente registrado
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+
 
 
 

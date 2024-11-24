@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'calendario',
     'nuevo_evento',
     'agendar_cita',
+    'notificaciones',
 ]
 
 MIDDLEWARE = [
@@ -137,3 +138,13 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGOUT_REDIRECT_URL = '/usuarios/login/'
+
+# Email configuration for sending real emails
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Cambia según tu proveedor de correo
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'geetwhat7@gmail.com'  # Cambia al correo que envía las notificaciones
+EMAIL_HOST_PASSWORD = 'eqdb xrsc pqnd ydkg'  # Usa una contraseña de aplicación para Gmail
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
