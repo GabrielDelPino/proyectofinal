@@ -47,6 +47,7 @@ body {
     font-weight: bold;
 }
 
+/* Sidebar Menu Styles */
 .sidebar-menu {
     display: flex;
     flex-direction: column;
@@ -54,25 +55,59 @@ body {
     width: 100%;
 }
 
+/* General Menu Item Styling */
 .menu-item {
     display: flex;
     align-items: center;
     padding: 0.75rem;
-    color: #b45309;
-    background-color: #fff;
     text-decoration: none;
     border-radius: 0.25rem;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.menu-item:hover {
+/* Default Button Styling */
+.menu-item:not([href="/nuevo_evento/"]):not([href="/agendar_cita/"]) {
+    color: #b45309;
+    background-color: #fff;
+}
+
+.menu-item:not([href="/nuevo_evento/"]):not([href="/agendar_cita/"]):hover {
     background-color: #f9fafb;
 }
 
-.menu-item.logout {
-    margin-top: 30rem; /* Ajusta el espacio hacia abajo */
+/* NUEVO EVENTO Button - Blue */
+.menu-item[href="/nuevo_evento/"] {
+    color: #fff;
+    background-color: #007bff;
 }
 
+.menu-item[href="/nuevo_evento/"]:hover {
+    background-color: #0056b3; /* Darker blue */
+}
+
+/* AGENDAR CITA Button - Green */
+.menu-item[href="/agendar_cita/"] {
+    color: #fff;
+    background-color: #28a745;
+}
+
+.menu-item[href="/agendar_cita/"]:hover {
+    background-color: #1e7e34; /* Darker green */
+}
+
+/* Menu Icon Alignment */
+.menu-item i {
+    margin-right: 10px;
+}
+
+.menu-item span {
+    font-weight: bold;
+}
+
+/* Logout Button Alignment */
+.menu-item.logout {
+    margin-top: 30rem; /* Adjusts space to push logout to bottom */
+}
 
 /* Calendar Content Styles */
 .calendar-content {
@@ -160,15 +195,7 @@ body {
     }
 }
 
-.event {
-    background-color: #007bff;
-    color: #ffffff;
-    padding: 5px;
-    margin-top: 5px;
-    border-radius: 5px;
-    font-size: 0.85em;
-}
-
+/* Event Tooltip */
 .event-container {
     position: relative;
     display: inline-block;
@@ -192,6 +219,52 @@ body {
 }
 
 .event-container:hover .event-tooltip {
+    display: block;
+}
+
+/* Specific Styles for Events and Citas */
+.event {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 5px;
+    font-size: 0.85em;
+}
+
+.cita-container {
+    position: relative;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.cita {
+    background-color: #28a745;
+    color: #ffffff;
+    padding: 5px;
+    margin: 2px 0;
+    border-radius: 5px;
+    font-size: 0.85em;
+}
+
+.cita-tooltip {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 0.85em;
+    white-space: nowrap;
+    z-index: 1000;
+    margin-top: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cita-container:hover .cita-tooltip {
     display: block;
 }
 

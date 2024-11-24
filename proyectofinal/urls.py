@@ -28,6 +28,7 @@ urlpatterns = [
     path('perfil/', include('perfil.urls')),
     path('calendario/', include('calendario.urls')),
     path('nuevo_evento/', include('nuevo_evento.urls')),  # Incluir las rutas de nuevo_evento
+    path('agendar_cita/', include('agendar_cita.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

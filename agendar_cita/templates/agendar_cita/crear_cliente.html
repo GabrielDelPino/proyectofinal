@@ -1,0 +1,15 @@
+{% extends 'nuevo_evento/nuevo_evento_base.html' %}
+
+{% block title %}Crear Cliente{% endblock %}
+
+{% block content %}
+<div class="calendar-content">
+    <h1 class="text-primary">Crear Cliente</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Guardar Cliente</button>
+        <a href="{% url 'agendar_cita' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

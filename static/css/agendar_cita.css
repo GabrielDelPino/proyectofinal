@@ -1,0 +1,15 @@
+.calendar-content h1 {
+    font-size: 2rem;
+    color: #b45309;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border: none;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}

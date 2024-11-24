@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'perfil',
     'calendario',
     'nuevo_evento',
+    'agendar_cita',
 ]
 
 MIDDLEWARE = [
