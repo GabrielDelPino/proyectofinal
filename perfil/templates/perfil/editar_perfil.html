@@ -1,16 +1,28 @@
-<!-- perfil/templates/perfil/editar_perfil.html -->
-
 {% extends 'base.html' %}
 
 {% block title %}Editar Perfil{% endblock %}
 
 {% block content %}
+<div class="profile-edit-content">
     <h2>Editar Perfil</h2>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
+        <div class="form-group">
+            <label for="id_nombre_empresa">Nombre de la empresa:</label>
+            {{ form.nombre_empresa }}
+        </div>
+        <div class="form-group">
+            <label for="id_logo">Logo de la empresa:</label>
+            {% if user.perfil.logo %}
+            <p>Actual: <a href="{{ user.perfil.logo.url }}" target="_blank">Ver logo actual</a></p>
+            {% endif %}
+            <input type="file" name="logo" id="id_logo" accept="image/*">
+        </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
+</div>
 {% endblock %}
+
+
 
 

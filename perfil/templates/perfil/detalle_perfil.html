@@ -1,20 +1,24 @@
-<!-- perfil/templates/perfil/detalle_perfil.html -->
-
 {% extends 'base.html' %}
 
 {% block title %}Detalles del Perfil{% endblock %}
 
 {% block content %}
+<div class="profile-details-content">
     <h2>Detalles del Perfil</h2>
-    <p>Nombre de la empresa: {{ user.perfil.nombre_empresa }}</p>
-    <p>Correo electrónico: {{ user.email }}</p>
-
-    {% if user.perfil.logo %}
-        <img src="{{ user.perfil.logo.url }}" alt="Logo de la empresa">
-    {% else %}
-        <p>No se ha cargado un logo para esta empresa.</p>
-    {% endif %}
-
+    <div class="profile-info">
+        <p><strong>Nombre de la empresa:</strong> {{ user.perfil.nombre_empresa }}</p>
+        <p><strong>Correo electrónico:</strong> {{ user.email }}</p>
+        
+        {% if user.perfil.logo %}
+        <div class="profile-logo">
+            <img src="{{ user.perfil.logo.url }}" alt="Logo de la empresa">
+        </div>
+        {% else %}
+        <p class="no-logo">No se ha cargado un logo para esta empresa.</p>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}
+
 
 
