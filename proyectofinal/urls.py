@@ -29,8 +29,10 @@ urlpatterns = [
     path('calendario/', include('calendario.urls')),
     path('nuevo_evento/', include('nuevo_evento.urls')),
     path('agendar_cita/', include('agendar_cita.urls')),
-    path('notificaciones/', include('notificaciones.urls')),  # Correctamente registrado
+    path('notificaciones/', include('notificaciones.urls')),
+    path('gestion_calendario/', include('gestion_calendario.urls', namespace='gestion_calendario')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 
 

@@ -1,0 +1,48 @@
+{% extends 'gestion_calendario/gestion_calendario_base.html' %}
+
+{% block title %}Gestión de Citas y Eventos{% endblock %}
+
+{% block content %}
+<div class="calendar-content">
+    <h1>Gestión de Citas y Eventos</h1>
+
+    <h2>Eventos</h2>
+    <ul class="list-group">
+        {% for evento in eventos %}
+        <li class="list-group-item">
+            <span>{{ evento.titulo }} - {{ evento.fecha|date:"d M, Y" }}</span>
+            <div>
+                <a href="{% url 'gestion_calendario:eliminar_evento' evento.id %}" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar este evento?');">Eliminar</a>
+            </div>
+        </li>
+        {% empty %}
+        <li class="list-group-item">
+            <span>No hay eventos disponibles.</span>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Citas</h2>
+    <ul class="list-group">
+        {% for cita in citas %}
+        <li class="list-group-item">
+            <span>{{ cita.cliente }} - {{ cita.servicio }} - {{ cita.fecha|date:"d M, Y" }}</span>
+            <div>
+                <a href="{% url 'gestion_calendario:eliminar_cita' cita.id %}" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar esta cita?');">Eliminar</a>
+            </div>
+        </li>
+        {% empty %}
+        <li class="list-group-item">
+            <span>No hay citas disponibles.</span>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
