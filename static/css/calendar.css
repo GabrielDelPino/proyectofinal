@@ -268,3 +268,31 @@ body {
     display: block;
 }
 
+.event-container, .cita-container {
+    position: relative;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.event-tooltip, .cita-tooltip {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    z-index: 1000;
+    margin-top: 5px;
+    max-width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.event-container:hover .event-tooltip,
+.cita-container:hover .cita-tooltip {
+    display: block;
+}

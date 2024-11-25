@@ -79,33 +79,43 @@
                 {% for week in calendar_weeks %}
                     {% for day in week %}
                         <div class="day-cell">
-                            <span class="day-number">{{ day }}</span>
-                            
-                            <!-- Mostrar eventos -->
-                            {% for evento in eventos %}
-                                {% if evento.fecha|date:"j" == day|stringformat:"d" %}
-                                    <div class="event-container">
-                                        <p class="event">{{ evento.titulo }} - {{ evento.hora }}</p>
-                                        <div class="event-tooltip">
-                                            <p><strong>Descripción:</strong> {{ evento.descripcion }}</p>
-                                            <p><strong>Categoría:</strong> {{ evento.categoria.nombre }}</p>
+                            {% if day != 0 %}
+                                <span class="day-number">{{ day }}</span>
+                                
+                                <!-- Mostrar eventos -->
+                                {% for evento in eventos %}
+                                    {% if evento.fecha|date:"j" == day|stringformat:"d" %}
+                                        <div class="event-container">
+                                            <p class="event">{{ evento.titulo }} - {{ evento.hora }}</p>
+                                            <div class="event-tooltip">
+                                                <p><strong>Descripción:</strong> {{ evento.descripcion }}</p>
+                                                <p><strong>Categoría:</strong> {{ evento.categoria.nombre }}</p>
+                                                <p><strong>Notas:</strong></p>
+                                                <ul>
+                                                    {% for nota in evento.notas.all %}
+                                                        <li>{{ nota.texto }}</li>
+                                                    {% empty %}
+                                                        <li>Sin notas</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
                                         </div>
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
 
-                            <!-- Mostrar citas -->
-                            {% for cita in citas %}
-                                {% if cita.fecha|date:"j" == day|stringformat:"d" %}
-                                    <div class="cita-container">
-                                        <p class="cita">{{ cita.servicio.nombre }} - {{ cita.hora }}</p>
-                                        <div class="cita-tooltip">
-                                            <p><strong>Cliente:</strong> {{ cita.cliente.nombre }}</p>
-                                            <p><strong>Notas:</strong> {{ cita.notas|default:"Sin notas" }}</p>
+                                <!-- Mostrar citas -->
+                                {% for cita in citas %}
+                                    {% if cita.fecha|date:"j" == day|stringformat:"d" %}
+                                        <div class="cita-container">
+                                            <p class="cita">{{ cita.servicio.nombre }} - {{ cita.hora }}</p>
+                                            <div class="cita-tooltip">
+                                                <p><strong>Cliente:</strong> {{ cita.cliente.nombre }}</p>
+                                                <p><strong>Notas:</strong> {{ cita.notas|default:"Sin notas" }}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
                         </div>
                     {% endfor %}
                 {% endfor %}
@@ -114,6 +124,7 @@
     </div>
 </body>
 </html>
+
 
 
 

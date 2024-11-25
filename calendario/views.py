@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from calendar import monthcalendar
 from datetime import datetime
-from nuevo_evento.models import Evento
+from nuevo_evento.models import Evento, Nota
 from agendar_cita.models import Cita
 from perfil.models import Perfil
 
@@ -25,7 +25,7 @@ def get_calendar_data(user, year, month):
 
     eventos = Evento.objects.filter(
         usuario=user, asignado=True, fecha__year=year, fecha__month=month
-    )
+    ).prefetch_related('notas')  # Prefetch para las notas relacionadas
     
     citas = Cita.objects.filter(
         usuario=user, fecha__year=year, fecha__month=month
@@ -47,6 +47,7 @@ def calendar_view(request):
     month = int(request.GET.get('month', datetime.now().month))
     calendar_data = get_calendar_data(request.user, year, month)
     return render(request, 'calendario/calendar.html', calendar_data)
+
 
 
 

@@ -158,6 +158,46 @@ body {
 
 
 
+/* Botones del formulario de inicio de sesión */
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem; /* Espacio entre los botones */
+    margin-top: 1.5rem;
+}
+
+.btn {
+    flex: 1; /* Hace que los botones tengan el mismo tamaño */
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #d5a241;
+    border: none;
+    color: white;
+    padding: 0.75rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.btn-secondary {
+    background-color: #f0f0f0;
+    border: none;
+    color: #333;
+    padding: 0.75rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: #b58334; /* Más oscuro al pasar el mouse */
+}
+
+.btn-secondary:hover {
+    background-color: #e0e0e0; /* Más oscuro al pasar el mouse */
+}
 
 
 
