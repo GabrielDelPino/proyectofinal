@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-oek=@(ay+f__ani@43+f8%webf8i!zwn53o$&cdmhyvi3z#3tg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+
 
 
 # Application definition
@@ -38,6 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'usuarios',
+    'perfil',
+    'calendario',
+    'nuevo_evento',
+    'agendar_cita',
+    'notificaciones',
+    'gestion_calendario',
 ]
 
 MIDDLEWARE = [
@@ -121,9 +128,24 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGOUT_REDIRECT_URL = '/usuarios/login/'
+
+# Email configuration for sending real emails
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Cambia según tu proveedor de correo
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'geetwhat7@gmail.com'  # Cambia al correo que envía las notificaciones
+EMAIL_HOST_PASSWORD = 'eqdb xrsc pqnd ydkg'  # Usa una contraseña de aplicación para Gmail
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+

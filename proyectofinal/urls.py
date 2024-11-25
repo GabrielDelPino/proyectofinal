@@ -14,14 +14,32 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+# proyectofinal/urls.py
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import redirect
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('usuarios/', include('usuarios.urls')),  # Incluye las URLs de la app 'usuarios'
-    path('', lambda request: redirect('login')),  # Redirige la raíz al login
-]
+    path('usuarios/', include('usuarios.urls')),
+    path('', lambda request: redirect('usuarios:login')),
+    path('perfil/', include('perfil.urls')),
+    path('calendario/', include('calendario.urls')),
+    path('nuevo_evento/', include('nuevo_evento.urls')),
+    path('agendar_cita/', include('agendar_cita.urls')),
+    path('notificaciones/', include('notificaciones.urls')),
+    path('gestion_calendario/', include('gestion_calendario.urls', namespace='gestion_calendario')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+
+
+
+
+
+
+
 
 

@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Nuevo Evento{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/nuevo_evento.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                {% if perfil.logo %}
+                    <img src="{{ perfil.logo.url }}" alt="{{ perfil.nombre_empresa }} Logo" class="sidebar-logo">
+                {% else %}
+                    <p class="text-muted">No hay logo disponible</p>
+                {% endif %}
+                <h2 class="empresa-nombre">{{ perfil.nombre_empresa }}</h2>
+            </div>
+            <div class="sidebar-menu">
+                <a href="{% url 'calendario' %}" class="menu-item">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Volver Atrás</span>
+                </a>
+                <a href="{% url 'usuarios:logout' %}" class="menu-item logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Cerrar Sesión</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="calendar-content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+</html>
+
+
+

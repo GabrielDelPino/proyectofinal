@@ -1,0 +1,24 @@
+{% extends 'nuevo_evento/nuevo_evento_base.html' %}
+
+{% block title %}Crear Nuevo Evento{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h1>Crear Nuevo Evento</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p class="text-muted">Si no encuentras una categoría adecuada, puedes crear una nueva.</p>
+        <button type="submit" class="btn btn-primary">Guardar Evento</button>
+        <a href="{% url 'calendario' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+

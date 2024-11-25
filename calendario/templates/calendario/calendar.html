@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalendarioPyme</title>
+    <link rel="stylesheet" href="{% static 'css/calendar.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Mostrar mensajes flash -->
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img src="{{ empresa_logo.url }}" alt="{{ empresa_nombre }} Logo" class="sidebar-logo">
+                <h2 class="empresa-nombre">{{ empresa_nombre }}</h2>
+            </div>
+            
+            <div class="sidebar-menu">
+                <a href="{% url 'nuevo_evento' %}" class="menu-item">
+                    <i class="fas fa-plus"></i>
+                    <span>NUEVO EVENTO</span>
+                </a>
+                <a href="{% url 'lista_notificaciones' %}" class="menu-item">
+                    <i class="fas fa-bell"></i>
+                    <span>NOTIFICACIONES</span>
+                </a>                         
+                <a href="{% url 'agendar_cita' %}" class="menu-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>AGENDAR CITA</span>
+                </a>
+                
+                <a href="{% url 'lista_eventos' %}" class="menu-item">
+                    <i class="fas fa-file-alt"></i>
+                    <span>AÑADIR NOTAS</span>
+                </a>
+                <a href="/gestion_calendario/" class="menu-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>GESTIÓN CALENDARIO</span>
+                </a>
+                                
+                <!-- Enlace de cerrar sesión -->
+                <a href="{% url 'usuarios:logout' %}" class="menu-item logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>CERRAR SESIÓN</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Calendar Content -->
+        <div class="calendar-content">
+            <div class="calendar-navigation">
+                <a href="?month={{ current_month|add:"-1" }}&year={{ current_year }}" class="prev-month">
+                    &laquo; Mes Anterior
+                </a>
+                <a href="?month={{ current_month|add:"1" }}&year={{ current_year }}" class="next-month">
+                    Mes Siguiente &raquo;
+                </a>
+            </div>
+            <h1 class="month-title">{{ month_name }} {{ current_year }}</h1>
+            <div class="calendar-grid">
+                <div class="weekday">Lunes</div>
+                <div class="weekday">Martes</div>
+                <div class="weekday">Miércoles</div>
+                <div class="weekday">Jueves</div>
+                <div class="weekday">Viernes</div>
+                <div class="weekday saturday">Sábado</div>
+                <div class="weekday sunday">Domingo</div>
+                {% for week in calendar_weeks %}
+                    {% for day in week %}
+                        <div class="day-cell">
+                            {% if day != 0 %}
+                                <span class="day-number">{{ day }}</span>
+                                
+                                <!-- Mostrar eventos -->
+                                {% for evento in eventos %}
+                                    {% if evento.fecha|date:"j" == day|stringformat:"d" %}
+                                        <div class="event-container">
+                                            <p class="event">{{ evento.titulo }} - {{ evento.hora }}</p>
+                                            <div class="event-tooltip">
+                                                <p><strong>Descripción:</strong> {{ evento.descripcion }}</p>
+                                                <p><strong>Categoría:</strong> {{ evento.categoria.nombre }}</p>
+                                                <p><strong>Notas:</strong></p>
+                                                <ul>
+                                                    {% for nota in evento.notas.all %}
+                                                        <li>{{ nota.texto }}</li>
+                                                    {% empty %}
+                                                        <li>Sin notas</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+
+                                <!-- Mostrar citas -->
+                                {% for cita in citas %}
+                                    {% if cita.fecha|date:"j" == day|stringformat:"d" %}
+                                        <div class="cita-container">
+                                            <p class="cita">{{ cita.servicio.nombre }} - {{ cita.hora }}</p>
+                                            <div class="cita-tooltip">
+                                                <p><strong>Cliente:</strong> {{ cita.cliente.nombre }}</p>
+                                                <p><strong>Notas:</strong> {{ cita.notas|default:"Sin notas" }}</p>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

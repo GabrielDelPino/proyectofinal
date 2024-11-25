@@ -1,0 +1,258 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    background-color: #b45309;
+    width: 300px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.sidebar-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.sidebar-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.empresa-nombre {
+    color: white;
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem;
+    color: #b45309;
+    background-color: #fff;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s;
+}
+
+.menu-item:hover {
+    background-color: #f9fafb;
+}
+
+.menu-item.logout {
+    margin-top: auto;
+}
+
+/* Content Styles */
+.calendar-content {
+    flex: 1;
+    padding: 2rem;
+    min-height: 100vh;
+    background-color: #f9fafb;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.calendar-content h1 {
+    font-size: 2.5rem;
+    color: #b45309;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    text-align: left;
+    border-bottom: 2px solid #b45309;
+    padding-bottom: 0.5rem;
+}
+
+/* Formulario */
+.calendar-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.calendar-content .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar-content input,
+.calendar-content select,
+.calendar-content textarea {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.calendar-content textarea {
+    resize: vertical;
+}
+
+.calendar-content .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+}
+
+.calendar-content .btn-primary {
+    background-color: #b45309;
+    color: #fff;
+}
+
+.calendar-content .btn-primary:hover {
+    background-color: #92400e;
+}
+
+.calendar-content .btn-secondary {
+    background-color: #6b7280;
+    color: white;
+    margin-left: 1rem;
+}
+
+.calendar-content .btn-secondary:hover {
+    background-color: #4b5563;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .calendar-content {
+        padding: 1rem;
+    }
+
+    .calendar-content form {
+        width: 100%;
+    }
+
+    .calendar-content h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Estilo para el contenido principal */
+.calendar-content {
+    flex: 1;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+}
+
+/* Título principal */
+.calendar-content h1 {
+    color: #b45309;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Lista de eventos */
+.calendar-content .list-group {
+    margin: 0 auto;
+    max-width: 800px;
+    list-style: none;
+    padding: 0;
+}
+
+/* Estilo para cada elemento de la lista */
+.calendar-content .list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Texto de los eventos */
+.calendar-content .list-group-item span {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Botón para añadir notas */
+.calendar-content .list-group-item a {
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.calendar-content .list-group-item a:hover {
+    background-color: #0056b3;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .calendar-content .list-group-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .calendar-content .list-group-item a {
+        margin-top: 0.5rem;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Botones */
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+
