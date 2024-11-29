@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from .models import Cita, Servicio, Cliente
 from .forms import CitaForm, ServicioForm, ClienteForm
 from perfil.models import Perfil
+from django.utils import timezone
+from django.contrib import messages  # Importamos el sistema de mensajes
+
 
 def agendar_cita(request):
     perfil = Perfil.objects.get(usuario=request.user)
@@ -10,12 +13,21 @@ def agendar_cita(request):
         if form.is_valid():
             cita = form.save(commit=False)
             cita.usuario = request.user
+
+            # Validar si la fecha de la cita es anterior al día actual
+            fecha_actual = timezone.now().date()
+            if cita.fecha < fecha_actual:
+                # Si la fecha es anterior, mostramos el mensaje de advertencia
+                messages.error(request, 'No se pueden agendar citas para fechas anteriores al día actual.')
+                return render(request, 'agendar_cita/agendar_cita.html', {'form': form, 'perfil': perfil})
+
+            # Si la fecha es válida, guardamos la cita
             cita.save()
             return redirect('lista_citas')  # Redirige a la lista de citas
     else:
         form = CitaForm()
-    return render(request, 'agendar_cita/agendar_cita.html', {'form': form, 'perfil': perfil})
 
+    return render(request, 'agendar_cita/agendar_cita.html', {'form': form, 'perfil': perfil})
 
 def lista_citas(request):
     perfil = Perfil.objects.get(usuario=request.user)

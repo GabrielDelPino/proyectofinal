@@ -10,7 +10,7 @@ class EventoForm(forms.ModelForm):
 
     class Meta:
         model = Evento
-        fields = ['titulo', 'categoria', 'descripcion', 'recordatorio']
+        fields = ['titulo', 'categoria', 'descripcion']
         widgets = {
             'titulo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del Evento'}),
             'categoria': forms.Select(attrs={'class': 'form-control'}),

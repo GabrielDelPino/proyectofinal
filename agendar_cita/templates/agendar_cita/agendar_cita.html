@@ -5,6 +5,16 @@
 {% block content %}
 <div class="calendar-content">
     <h1 class="text-primary">Agendar Cita</h1>
+
+    <!-- Mostrar mensajes de error si los hay -->
+    {% if messages %}
+        <div class="alert alert-warning">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
@@ -16,4 +26,5 @@
     </form>
 </div>
 {% endblock %}
+
 
