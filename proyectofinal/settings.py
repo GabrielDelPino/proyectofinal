@@ -149,3 +149,21 @@ EMAIL_HOST_USER = 'geetwhat7@gmail.com'  # Cambia al correo que envía las notif
 EMAIL_HOST_PASSWORD = 'eqdb xrsc pqnd ydkg'  # Usa una contraseña de aplicación para Gmail
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': 'django_errors.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    },
+}

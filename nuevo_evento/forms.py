@@ -1,5 +1,5 @@
 from django import forms
-from .models import Evento, Categoria, Nota
+from .models import Evento, Nota
 
 class EventoForm(forms.ModelForm):
     nueva_categoria = forms.CharField(
@@ -15,7 +15,6 @@ class EventoForm(forms.ModelForm):
             'titulo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del Evento'}),
             'categoria': forms.Select(attrs={'class': 'form-control'}),
             'descripcion': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Descripción'}),
-            'recordatorio': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }
 
     def save(self, commit=True):
@@ -25,6 +24,7 @@ class EventoForm(forms.ModelForm):
             self.instance.categoria = categoria
         return super().save(commit)
 
+
 class NotaForm(forms.ModelForm):
     class Meta:
         model = Nota
@@ -32,6 +32,3 @@ class NotaForm(forms.ModelForm):
         widgets = {
             'texto': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Escribe tu nota aquí'}),
         }
-
-
-
